@@ -27,23 +27,23 @@ setState({
 
 const handleSave=()=>{
     temp.push(state)
-    localStorage.setItem("lists",JSON.stringify(temp))
-    setStoreAllTask(temp)
-    setState({ 
+
+    // localStorage.setItem("lists",JSON.stringify(temp))
+        const  newData=temp.map((item, index)=>{return{id:index,taskName:item.taskName}});
+        localStorage.setItem('lists', JSON.stringify(newData))
+         setStoreAllTask(newData)
+         setState({ 
         taskName:"",
-        description:""
+        description:""  
+
     })
 
-    
-
-// let taskObj={}
-// taskObj['Name']=taskName
-// taskObj['Description']=description
-saveTask();
+    console.log("from create data", newData)
+        saveTask();
 
 }
 
-console.log("from data" + storeAllTask)
+// console.log("from data" + storeAllTask)
 // console.log(taskObj)
 
   return (
@@ -65,8 +65,8 @@ console.log("from data" + storeAllTask)
         </form>
         </ModalBody>
         <ModalFooter>
-<Button color='primary' onClick={handleSave}>Add</Button>
-<Button color='secondary' onClick={toggle}>cancel</Button>
+        <Button color='primary' onClick={handleSave}>Add</Button>
+        <Button color='secondary' onClick={toggle}>cancel</Button>
         </ModalFooter>
     </Modal>
 

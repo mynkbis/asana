@@ -12,9 +12,8 @@ function App() {
 
     <div className="App">
     
-    <h1>asana</h1>
-  
-   <TodoList/><Section/>
+    <h1>Asana</h1>
+  <Section/>
     </div>
   );
 }

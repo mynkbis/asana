@@ -19,4 +19,24 @@
 .deleteButton{
     background-color: transparent;
     border: 2px solid white;
+    border-radius: 5px;
+}
+.deleteButton:hover{
+    cursor: pointer;
+    border: 2px solid white;
+    background-color: rgba(215, 215, 221, 0.986); 
+    border-radius: 5px;
+}
+
+
+.buttonEdit{
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.buttonEdit:hover{
+    cursor: pointer;
+    border: 2px solid white;
+    background-color: rgba(215, 215, 221, 0.986); 
+    border-radius: 5px;
 }

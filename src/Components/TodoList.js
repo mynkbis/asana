@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import CreateTask from '../Models/CreateTask';
+import CreateTask from '../Modals/CreateTask';
 
 
 function TodoList() {

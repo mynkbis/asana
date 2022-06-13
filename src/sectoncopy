@@ -1,71 +1,35 @@
 
-import React , {useEffect, useMemo, useState} from 'react'
-import './section.css'
-import Button from '../Components/Button'
-import DeleteButton from '../Components/DeleteButton'
-import EditButton from '../Components/Edit'
-import { Droppable } from "react-beautiful-dnd";
-import { Draggable, DragDropContext } from 'react-beautiful-dnd'
-
-
-const Section = () => {
-  const [localDataStore, setLocalDataStore] = useState([])
-  const [savestatus, setSavestatus] = useState(false)
-
-  useEffect(()=>{
-
-    const localData=localStorage.getItem('lists')
-  setLocalDataStore(JSON.parse (localData)?.length ?  JSON.parse (localData) : [])
-  setSavestatus(false)
-  },[savestatus])
-//   const ColumnHeader ={}
-//   text-transform: uppercase;
-//   margin-bottom: 20px};
-// `;
-
-// const DroppableStyles = {
-//   padding: 10px,
-//   border-radius: 6px,
-//   background: #d4d4d4,
-// };
-
-const onDragEnd=(result)=>{
-
-}
-
-
-return (
-
 <>
     <div className='mainContainer'>
       <div className='secondContainer'>
-     
+      <DragDropContext onDragEnd={onDragEnd}>
         <div className='secondContainerBox'>   
           <div className='secondContainerBox1'>
           <input name='Todo' placeholder='Todo'></input>
             <Button setSavestatus = {setSavestatus}></Button>  
              </div>
-             
-                   <div className='secondryBox2'>
+   
+               <Droppable droppableId='droppable'>
+                {(provided)=>(
+                 <div className='secondryBox2' innerref={provided.innerref} {...provided.droppableProps}>
                   <Button setSavestatus = {setSavestatus}>+ Add Task</Button>
-                
-                    
+                  <Draggable draggableId={""}>
+                    {(provide)=>(<div  {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                          innerref={provided.innerref}> 
                                           {localDataStore?.length && localDataStore.map((dataValue, index)=>
                                              <div key={index} className="newEnteredData"> {dataValue.taskName} 
-                                                 <div className='newEnteredDataButton'> 
-                                                 <DeleteButton key={dataValue.id}
-                                                 id={dataValue.id} setLocalDataStore={setLocalDataStore}/> 
-                                                 
-                                                 <EditButton key={dataValue.id}
-                                                 id={dataValue.id}/></div></div>)}
-                 
+                                                 <div className='newEnteredDataButton'><DeleteButton localDataStor={localDataStore} /> <EditButton/></div></div>)}
+                                                 </div>)}
+                   </Draggable>
+                        {provided.placeholder}
                   </div>
-          
-              
+                 )}
+               </Droppable>
           </div>
-       
-         
-        <div className='secondContainerBox' >
+          <Droppable droppableId='droppable'>
+          {(provided)=>{
+        <div className='secondContainerBox' innerref={provided.innerref} {...provided.droppableProps}>
         <div className='secondContainerBox1'>
         <input name='Develope' placeholder='Develope'></input>
         </div>
@@ -74,7 +38,8 @@ return (
             <h5>task2</h5>
               </div>
                </div>
-            
+              }}
+               </Droppable>
                  <div className='secondContainerBox'>
                  <div className='secondContainerBox1'>
                    <input name='QA' placeholder='QA'></input>
@@ -93,7 +58,7 @@ return (
                                    </div>
                            {/*  <button className='buttonBox'>+ Add Section</button> */}
                                 <button>+ Add Section</button>
-                             
+                               </DragDropContext>
                                </div>
                                  </div>                      
   </>)}
