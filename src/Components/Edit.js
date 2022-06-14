@@ -11,22 +11,23 @@ const[datanew, setNewData]=useState("")
 
         const localData = JSON.parse(localStorage.getItem('lists'));
         console.log(localData)
+        // eslint-disable-next-line eqeqeq
         const newList = localData.filter((item) => item.id == id);
         // console.log("ew lsit" ,newList)
      setNewData(newList[0].taskName)
-// console.log(newList[0].taskName)
+ console.log("newly entered data",newList[0].taskName)
     }
 
 useEffect(()=>(
     setNewData(datanew),
-    console.log("useEffe",datanew)
+ console.log("useEffe",datanew)
 ),[datanew])
 
 
 
     return ( <
         div className = 'editButton' >
-        <input dafaultvalue={datanew}/>
+        <input defaultvalue={datanew} onChange={(e)=>{setNewData(e.target.value)} }/>
     
         <button className = 'buttonEdit'onClick = {
             () => handleEdit(props.id)}> E </button> 
